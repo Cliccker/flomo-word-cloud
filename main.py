@@ -23,7 +23,12 @@ def read_html(html_path):
     para = soup.find_all("p")  # 获取所有的段落
     para_list = []
     for item in para:
-        para_list.append(item.string)
+        item_string = item.string
+        try:
+            if "#" not in item_string:  # 去除标签所在行，不过到底要不要去除应该待定
+                para_list.append(item_string)
+        except TypeError:
+            continue
     return para_list
 
 
