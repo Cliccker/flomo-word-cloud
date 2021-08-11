@@ -1,0 +1,4 @@
+beautifulsoup4==4.9.3
+jieba==0.42.1
+matplotlib~=3.4.2
+wordcloud~=1.8.1
