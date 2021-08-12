@@ -26,8 +26,9 @@ def read_html(html_path):
     for item in para:
         item_string = item.string
         try:
-            if "#" or "https" not in item_string:  # 去除标签所在行和网址
+            if "#" not in item_string and "https" not in item_string:  # 去除标签和网址所在行
                 para_list.append(item_string)
+                print(item_string)
         except TypeError:
             continue
     return para_list
