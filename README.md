@@ -20,7 +20,9 @@
 
 + 如果你对某些词不满意：
 
-  在`stopword.txt`里添加它们，再运行`main.py`就可以啦。
+  在`words/stopword.txt`里添加它们，或者在`words/dictionary.txt`里添加你认为没有分出来的词；
+
+  你也可以修改`generate_wordcloud_img()`的参数，如`generate_wordcloud_img(min_word_length=3)`来限制词语的最小长度。
 
   
 
@@ -33,6 +35,8 @@
   当然你也可以添加自己喜欢的字体，只需要将它拷贝到`fonts`文件夹下就可以了~
 
   **注意：** svg图片显示需要字体支持，如果你使用了自定义字体，请先安装它！
+
+  
 
   
 
