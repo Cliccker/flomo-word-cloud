@@ -10,9 +10,5 @@
 
 
 from utils import generate_wordcloud_img
-""" 生成词云图片
-font : string (default="华文中宋")
-    参数为空则默认选择华文中宋
-"""
 generate_wordcloud_img(font="毛笔体")
 

@@ -81,7 +81,7 @@ def makedir(path):
 def generate_wordcloud_img(font="华文中宋"):
     """
     生成词云图片
-    :param font: 需要显示的字体名称
+    :param font: 字体名称，默认为华文中宋
     """
     jb.initialize()
     string = segment_corpus()

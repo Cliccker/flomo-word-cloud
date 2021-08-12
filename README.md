@@ -1,7 +1,6 @@
 # flomo-word-cloud
-从flomo导出的笔记中生成词云
 
-由于最近flomo出了一个导出功能，想在导出的数据上创造一些有趣的玩法。故写了这个生成词云的脚本
+从flomo导出的笔记中生成词云
 
 ## 如何使用？
 
@@ -11,15 +10,29 @@
   pip install -r requirements.txt
   ```
 
-+ 在项目里新建一个`file`文件夹，把所有从flomo导出的html放入`file`；
++ 在项目里新建一个`file`文件夹，把所有从flomo导出的html文件放入其中；
 
-+ 运行`main.py`，`my_flomo_wordcloud.png`就是你想要的图片
++ 运行`main.py`
+
++ 在`output`文件夹里欣赏你的flomo词云吧🥰
 
 ## 对结果不满意？
 
-如果你对结果里的某些词不太满意，在`stopword.txt`里添加它们，再运行`main.py`就可以啦
++ 如果你对某些词不满意：
 
-## 想要更有趣的形状？
+  在`stopword.txt`里添加它们，再运行`main.py`就可以啦。
 
-或许你可以参考一下wordcloud的教程，创造出更多好看有趣的词云。
++ 如果你对字体不满意：
+
+  在`main.py`中修改`generate_wordcloud_img()`的参数，如`generate_wordcloud_img(font="毛笔体")`
+
+  目前我添加了三个字体，**华文中宋**（通用），**阿里普惠体**（免费），**毛笔体**（好看）
+
+  当然你也可以添加自己喜欢的字体，只需要将它拷贝到`fonts`文件夹下就可以了~
+
++ 如果你对词云形状不满意：
+
+  或许可以试着自己学习python库wordcloud的用法，自定义形状。
+
+  当然，我还是会更新这个feature的😋
 
