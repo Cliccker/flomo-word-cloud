@@ -62,10 +62,10 @@ def segment_corpus():
                     cloud += " " + word
         except AttributeError:
             pass
-    # 保存语料库为txt文件
-    with open("words/corpus.txt", "w", encoding="utf-8") as corpus_txt:
-        corpus_txt.write(cloud)
-        corpus_txt.close()
+    # # 保存语料库为txt文件
+    # with open("words/corpus.txt", "w", encoding="utf-8") as corpus_txt:
+    #     corpus_txt.write(cloud)
+    #     corpus_txt.close()
     print('Segmenting corpus ...')
     return cloud
 
