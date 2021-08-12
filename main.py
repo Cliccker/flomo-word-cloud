@@ -39,14 +39,17 @@ def build_corpus():
     corpus = []
     for root, dirs, names in os.walk("file"):
         for filename in names:
+            print("Parsing {} ...".format(filename))
             corpus += read_html(os.path.join(root, filename))
+    print("Building corpus ...")
     return corpus
 
 
-def segment_corpus(corpus):
+def segment_corpus():
     """
     对语料库进行分词
     """
+    corpus = build_corpus()
     with open("stopwords.txt", "r", encoding="utf-8") as stopwords_file:
         stopwords = stopwords_file.read().splitlines()
     cloud = ""
@@ -58,31 +61,50 @@ def segment_corpus(corpus):
                     cloud += " " + word
         except AttributeError:
             pass
+    print('Segmenting corpus ...')
     return cloud
 
 
-def generate_img(string):
+def makedir(path):
+    """
+    生成输出文件夹
+    :param path: 文件夹名称
+    """
+    folder = os.path.exists(path)
+    if folder:
+        pass
+    else:
+        os.makedirs(path)
+
+
+def generate_wordcloud_img(font):
     """
     生成词云图片
-    :param string: 需要处理的文本
+    :param font: 需要显示的字体名称
     """
+    string = segment_corpus()
+    print("Generating wordcloud ...")
     wordcloud = WordCloud(
         background_color='white',  # 背景颜色，根据图片背景设置，默认为黑色
-        font_path='C:\Windows\Fonts\STZHONGS.TTF',  # 若有中文需要设置才会显示中文
+        font_path="fonts/" + font + ".ttf",  # 若有中文需要设置才会显示中文
         width=1000,
         height=900,
-        margin=2).generate(string)  # generate 可以对全部文本进行自动分词
+        margin=2,
+        max_words=300,
+        min_word_length=2).generate(string)  # generate 可以对全部文本进行自动分词
     # 参数 width，height，margin分别对应宽度像素，长度像素，边缘空白处
-
     plt.imshow(wordcloud)
     plt.axis('off')
-    plt.show()
-
-    # 保存图片：默认为此代码保存的路径
-    wordcloud.to_file('my_flomo_wordcloud.png')
+    makedir("output")
+    print("Saving images ...")
+    wordcloud.to_file("output/my_flomo_wordcloud.png")  # 保存PNG格式
+    svg_string = wordcloud.to_svg()  # 保存SVG格式
+    with open("output/my_flomo_wordcloud.svg", "w", encoding="utf-8") as svg_file:
+        svg_file.write(svg_string)
+        svg_file.close()
+    print("Finished!")
 
 
 if __name__ == '__main__':
-    corpus = build_corpus()
-    cloud = segment_corpus(corpus)
-    generate_img(cloud)
+    jb.initialize()
+    generate_wordcloud_img(font='毛笔体')
