@@ -13,10 +13,10 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
 
-def generate_wordcloud_img(font="华文中宋", min_word_length=2):
+def generate_wordcloud_img(font="华文中宋", min_word_length=3):
     """
     生成词云图片
-    :param min_word_length: 词语的最短长度，默认为2
+    :param min_word_length: 词语的最短长度，默认为3
     :param font: 字体名称，默认为华文中宋
     """
     string = segment_corpus()
@@ -35,10 +35,10 @@ def generate_wordcloud_img(font="华文中宋", min_word_length=2):
     makedir("output")
     print("Saving images ...")
     # 保存PNG格式
-    cloud.to_file("output/my_flomo_wordcloud_"+str(min_word_length)+".png")
+    cloud.to_file("output/my_flomo_wordcloud_" + str(min_word_length) + ".png")
     # 保存SVG格式
     svg_string = cloud.to_svg()
-    with open("output/my_flomo_wordcloud_"+str(min_word_length)+".svg", "w", encoding="utf-8") as svg_file:
+    with open("output/my_flomo_wordcloud_" + str(min_word_length) + ".svg", "w", encoding="utf-8") as svg_file:
         svg_file.write(svg_string)
         svg_file.close()
     print("Finished!")
