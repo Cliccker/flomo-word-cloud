@@ -14,7 +14,7 @@ from utils import *
 def main(font="华文中宋", min_word_length=3, img=None):
     """
     生成词云图片
-    :param img: 背景图片
+    :param img: 背景图片，默认为无背景图片
     :param min_word_length: 词语的最短长度，默认为3
     :param font: 字体名称，默认为华文中宋
     """
@@ -24,4 +24,4 @@ def main(font="华文中宋", min_word_length=3, img=None):
 
 
 if __name__ == '__main__':
-    main(font='毛笔体', img="cat.jpg")
+    main(font='毛笔体', img="pika.jpg")

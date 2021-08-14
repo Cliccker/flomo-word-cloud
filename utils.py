@@ -14,7 +14,7 @@ import jieba as jb
 from bs4 import BeautifulSoup
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
-
+import numpy as np
 
 def read_html(html_path):
     """
@@ -92,7 +92,9 @@ def pick_background(img):
     if img is None:
         return None
     else:
-        return plt.imread("back_ground/"+img)
+        image = plt.imread("back_ground/"+img)
+        image = image.astype(np.uint8)
+        return image
 
 
 def make_wordcloud(font, min_word_length, string, img):
