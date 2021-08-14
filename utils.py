@@ -13,6 +13,7 @@ import jieba as jb
 
 from bs4 import BeautifulSoup
 from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 
 
 def read_html(html_path):
@@ -83,19 +84,33 @@ def make_dir(path):
         os.makedirs(path)
 
 
-def make_wordcloud(font, min_word_length, string):
+def pick_background(img):
+    """
+    选择背景图片，没有选则返回无
+    :param img: 背景图片
+    """
+    if img is None:
+        return None
+    else:
+        return plt.imread("back_ground/"+img)
+
+
+def make_wordcloud(font, min_word_length, string, img):
     """
     生成词云
+    :param img: 背景图片
     :param string: 语料
     :param font: 字体
     :param min_word_length: 最小长度
     :return:
     """
     print("Generating wordcloud ...")
+    background = pick_background(img)
     cloud = WordCloud(
         background_color='white',  # 背景颜色，根据图片背景设置，默认为黑色
         font_path="fonts/" + font + ".ttf",  # 若有中文需要设置才会显示中文
         width=1000,
+        mask=background,
         height=900,
         margin=2,
         max_words=300,
@@ -110,6 +125,8 @@ def save_img(cloud, min_word_length):
     :param cloud: 词云
     :param min_word_length: 最短词的长度，用来做区分
     """
+    plt.imshow(cloud)
+    plt.axis('off')
     make_dir("output")
     print("Saving images ...")
     # 保存PNG格式
