@@ -12,7 +12,7 @@ import os
 import jieba as jb
 
 from bs4 import BeautifulSoup
-
+from wordcloud import WordCloud
 
 
 def read_html(html_path):
@@ -28,7 +28,6 @@ def read_html(html_path):
         try:
             if "#" not in item_string and "https" not in item_string:  # 去除标签和网址所在行
                 para_list.append(item_string)
-                print(item_string)
         except TypeError:
             continue
     return para_list
@@ -72,7 +71,7 @@ def segment_corpus():
     return cloud
 
 
-def makedir(path):
+def make_dir(path):
     """
     生成输出文件夹
     :param path: 文件夹名称
@@ -84,3 +83,40 @@ def makedir(path):
         os.makedirs(path)
 
 
+def make_wordcloud(font, min_word_length, string):
+    """
+    生成词云
+    :param string: 语料
+    :param font: 字体
+    :param min_word_length: 最小长度
+    :return:
+    """
+    print("Generating wordcloud ...")
+    cloud = WordCloud(
+        background_color='white',  # 背景颜色，根据图片背景设置，默认为黑色
+        font_path="fonts/" + font + ".ttf",  # 若有中文需要设置才会显示中文
+        width=1000,
+        height=900,
+        margin=2,
+        max_words=300,
+        min_word_length=min_word_length).generate(string)  # generate 可以对全部文本进行自动分词
+    # 参数 width，height，margin分别对应宽度像素，长度像素，边缘空白处
+    return cloud
+
+
+def save_img(cloud, min_word_length):
+    """
+    保存图片
+    :param cloud: 词云
+    :param min_word_length: 最短词的长度，用来做区分
+    """
+    make_dir("output")
+    print("Saving images ...")
+    # 保存PNG格式
+    cloud.to_file("output/my_flomo_wordcloud_" + str(min_word_length) + ".png")
+    # 保存SVG格式
+    svg_string = cloud.to_svg()
+    with open("output/my_flomo_wordcloud_" + str(min_word_length) + ".svg", "w", encoding="utf-8") as svg_file:
+        svg_file.write(svg_string)
+        svg_file.close()
+    print("Finished!")
