@@ -1,4 +1,8 @@
 *.html
 *.png
 *.svg
+*.md
+*.idea
+/file
+/output
 words/corpus.txt

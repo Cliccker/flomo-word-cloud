@@ -2,10 +2,10 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/file" />
       <excludeFolder url="file://$MODULE_DIR$/output" />
+      <excludeFolder url="file://$MODULE_DIR$/output/mdFiles/file" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.8 (flomo-wordcloud)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.8 (formula)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
